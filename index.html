@@ -1,0 +1,109 @@
+<div id="proposalPage">
+    <p class="subtitle">Do you want to open my love note? 💌</p>
+    <button type="button" id="yesBtn">Yes 💗</button>
+    <button type="button" id="noBtn">No 🙈</button>
+  </div>
+
+  <section class="letter" id="messagePage" style="display: none;">
+    <h2>To my favourite person,</h2>
+
+    <p>
+      I wish I could tuck a hug inside this little note,
+      so you could feel how much you mean to me.
+    </p>
+
+    <p>
+      Hey bubbuu, just wanted to say I miss you alot bubbuuuu 🫂.
+      Can't wait to see you again! ❤️
+      I love youu so much bachhhaaa and hope we could cuddle
+      together and I can give a 💋 on your cheeks.
+      I miss every moment that we spent together 👩‍❤️‍👩❣️.
+      Bubbu, even an ordinary day feels special when you're part of it.
+    </p>
+
+    <p>I will always be there to support you baby ♥️👀</p>
+
+    <p>
+      I don't need every moment to be perfect. I just want
+      more of them with you: more laughs, more long talks,
+      and more memories we'll smile about later.
+    </p>
+
+    <p>
+      Until I can hold your hand again, this teddy is
+      sending you the biggest hug. 🧸💕
+    </p>
+
+    <p class="signature">
+      With all my love,<br>
+      Janvi ♡
+    </p>
+  </section>
+
+  <p class="footer">Made with love, and a tiny teddy hug 🐻</p>
+</main>
+
+<script>
+  const background = document.getElementById("background");
+  const symbols = ["♡", "💗", "💕", "🌸", "🤍"];
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
+
+  for (let i = 0; i < 18; i++) {
+    const heart = document.createElement("span");
+    heart.className = "floating";
+    heart.textContent = symbols[i % symbols.length];
+    heart.style.left = Math.random() * 100 + "%";
+
+    if (reducedMotion) {
+      heart.style.top = Math.random() * 100 + "%";
+    }
+
+    heart.style.fontSize = 18 + Math.random() * 20 + "px";
+    heart.style.animationDuration = 10 + Math.random() * 10 + "s";
+    heart.style.animationDelay = -Math.random() * 20 + "s";
+    background.appendChild(heart);
+  }
+
+  const noBtn = document.getElementById("noBtn");
+  const yesBtn = document.getElementById("yesBtn");
+  const proposalPage = document.getElementById("proposalPage");
+  const messagePage = document.getElementById("messagePage");
+
+  function dodgeNoButton() {
+    noBtn.style.position = "fixed";
+    noBtn.style.margin = "0";
+    noBtn.style.zIndex = "1000";
+
+    const buttonWidth = noBtn.offsetWidth;
+    const buttonHeight = noBtn.offsetHeight;
+
+    const maxX = Math.max(0, window.innerWidth - buttonWidth);
+    const maxY = Math.max(0, window.innerHeight - buttonHeight);
+
+    const marginX = Math.min(30, maxX / 2);
+    const marginY = Math.min(30, maxY / 2);
+
+    const randomX = marginX + Math.random() * (maxX - marginX * 2);
+    const randomY = marginY + Math.random() * (maxY - marginY * 2);
+
+    noBtn.style.left = ${randomX}px;
+    noBtn.style.top = ${randomY}px;
+  }
+
+  noBtn.addEventListener("mouseenter", dodgeNoButton);
+
+  noBtn.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    dodgeNoButton();
+  }, { passive: false });
+
+  yesBtn.addEventListener("click", () => {
+    proposalPage.style.display = "none";
+    noBtn.style.display = "none";
+    messagePage.style.display = "block";
+  });
+</script>
+</body>
+</html>
